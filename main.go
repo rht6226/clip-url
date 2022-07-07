@@ -10,10 +10,13 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/rht6226/clip-url/controllers"
 )
 
 func main() {
 	router := gin.Default()
+
+	controllers.NewUrlControllerHandler(router, nil)
 
 	srv := &http.Server{
 		Addr:    ":8080",

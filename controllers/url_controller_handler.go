@@ -21,7 +21,9 @@ func NewUrlControllerHandler(r *gin.Engine, svc service.UrlService) {
 	g.GET("/:shortLink", h.Redirect)
 }
 
-func (h *urlControllerHandler) LoadUrlInfo(c *gin.Context) {}
+func (h *urlControllerHandler) LoadUrlInfo(c *gin.Context) {
+	_ = c.Param("shortLink")
+}
 
 func (h *urlControllerHandler) SaveNewUrl(c *gin.Context) {}
 

@@ -15,7 +15,7 @@ const (
 type base62EncoDecService struct{}
 
 // returns a new Encodec service based on Base62 service
-func NewBase62EncoDecService(start uint64, end uint64) *base62EncoDecService {
+func NewBase62EncoDecService() *base62EncoDecService {
 	return &base62EncoDecService{}
 }
 
@@ -48,5 +48,3 @@ func (svc *base62EncoDecService) Decode(shortLink string) (uint64, error) {
 	return number, nil
 
 }
-
-// return a random

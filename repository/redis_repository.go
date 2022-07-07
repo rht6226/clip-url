@@ -40,7 +40,7 @@ func (r *redisRepository) IsUsed(id uint64) bool {
 }
 
 // save a new url entry to redis
-func (r *redisRepository) Save(url *model.Url, t time.Time) error {
+func (r *redisRepository) Save(url *model.Url) error {
 	conn := r.pool.Get()
 	defer conn.Close()
 
@@ -51,7 +51,9 @@ func (r *redisRepository) Save(url *model.Url, t time.Time) error {
 		return err
 	}
 
-	_, err = conn.Do("EXPIREAT", key, t.Unix())
+	layoutISO := "2006-01-02 15:04:05"
+	expires, _ := time.Parse(layoutISO, url.Expires)
+	_, err = conn.Do("EXPIREAT", key, expires.Unix())
 
 	if err != nil {
 		return err

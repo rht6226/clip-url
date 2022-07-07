@@ -9,10 +9,10 @@ func NewBadRequest(reason string) *Error {
 	}
 }
 
-func NewInternal() *Error {
+func NewInternal(reason string) *Error {
 	return &Error{
 		Type:    Internal,
-		Message: "Internal server error.",
+		Message: fmt.Sprintf("Internal server error: %v", reason),
 	}
 }
 
